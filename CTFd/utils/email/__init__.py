@@ -128,6 +128,11 @@ def user_created_notification(addr, name, password):
 def check_email_is_whitelisted(email_address):
     local_id, _, domain = email_address.partition("@")
     domain_whitelist = get_config("domain_whitelist")
+    email_whitelist = get_config("email_whitelist")
+    
+    if email_whitelist:
+        email_whitelist = {e.strip() for e in email_whitelist.split(",")}
+        return email_address in email_whitelist
 
     if domain_whitelist:
         domain_whitelist = [d.strip() for d in domain_whitelist.split(",")]

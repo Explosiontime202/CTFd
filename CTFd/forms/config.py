@@ -49,6 +49,10 @@ class ResetInstanceForm(BaseForm):
 
 
 class AccountSettingsForm(BaseForm):
+    email_whitelist = StringField(
+        "Email Allowlist",
+        description="Comma-separated list of allowable email addresses. Overrides domain whitelist.",
+    )
     domain_whitelist = StringField(
         "Email Domain Allowlist",
         description="Comma-seperated list of allowable email domains which users can register under (e.g. examplectf.com, example.com, *.example.com)",
